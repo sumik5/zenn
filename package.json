@@ -1,0 +1,14 @@
+{
+  "name": "zenn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "new:article": "yarn zenn new:article",
+    "new:book": "yarn zenn new:book",
+    "preview": "yarn zenn preview"
+  },
+  "dependencies": {
+    "zenn-cli": "^0.1.121"
+  }
+}
