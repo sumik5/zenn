@@ -3,7 +3,7 @@ title: "daoに関係するエコシステム"
 emoji: "🗂"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["Web3", "DAO", "Ethereum"]
-published: false
+published: true
 ---
 
 ## DAO 関連のエコシステム
@@ -58,7 +58,7 @@ Gnosis Chain ネットワーク上の DAO 管理サービス。独自トーク�
 
 ## DAO プロジェクト管理
 
-DAOを運営するにあたって、プロジェクトのタスク管理などを行うWebサービス
+DAO を運営するにあたって、プロジェクトのタスク管理などを行う Web サービス
 
 ### Dework
 
@@ -76,7 +76,7 @@ Discord との連携が便利そう
 
 ## 資産管理
 
-DAOが保有する資産を管理するWebサービス
+DAO が保有する資産を管理する Web サービス
 
 ### Gnosis safe
 
@@ -103,7 +103,7 @@ https://smartinvoice.xyz/
 
 ## 投票関連
 
-DAOに投票の仕組みを提供するWebサービス
+DAO に投票の仕組みを提供する Web サービス
 
 ### snapshot
 
