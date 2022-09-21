@@ -17,7 +17,7 @@ https://github.com/shivase/alfred-worlflow-deepl-google-translation
 
 ver1.1 として、Google と DeepL の結果を同時に表示できるようにしました。(それぞれホットキーで個別に結果表示も可能です)
 
-![deeplandgoogle](/images/002/002-anki-random-question-005.png)
+![deeplandgoogle](/images/003/deeplandgoogle.png)
 
 ### 必要なもの
 
