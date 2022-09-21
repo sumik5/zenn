@@ -11,7 +11,7 @@ published: true
 
 ![image](/images/003/result.gif)
 
-[alfred-worlflow-deepl-translation](https://github.com/shivase/alfred-worlflow-deepl-translation)
+https://github.com/shivase/alfred-worlflow-deepl-translation
 
 ### 必要なもの
 
