@@ -1,7 +1,7 @@
 ---
 title: "DeepL+Alfredでクリップボードの英語をブラウザで表示"
 emoji: "👋"
-type: "idea" # tech: 技術記事 / idea: アイデア
+type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Alfred", "DeepL"]
 published: true
 ---
