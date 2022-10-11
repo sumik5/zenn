@@ -1,0 +1,25 @@
+{
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    },
+    "editor.snippetSuggestions": "top"
+  },
+  "workbench.colorCustomizations": {
+    "editor.background": "#fff",
+    "statusBar.background": "#0d83fd",
+    "sideBar.background": "#EDF2F7"
+  },
+  "insertDateString.format": "YYYY-MM-DD hh:mm",
+  "markdownlint.config": {
+    "line-length": false,
+    "no-duplicate-heading": false,
+    "single-h1": false,
+    "no-trailing-punctuation": false,
+    "no-inline-html": false,
+    "no-bare-urls": false
+  }
+}

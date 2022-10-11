@@ -4,14 +4,14 @@
 
 ## command
 
-作成記事作成
+作成記事作成。
 
 ```bash
 yarn zenn new:article --slug 記事のスラッグ --title タイトル --type idea --emoji ✨
 # type: tech or idea
 ```
 
-記事のプレビュー
+記事のプレビュー。
 
 ```bash
 yarn zenn preview

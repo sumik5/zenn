@@ -4,11 +4,29 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "update": "yarn upgrade --latest",
     "new:article": "yarn zenn new:article",
     "new:book": "yarn zenn new:book",
-    "preview": "yarn zenn preview"
+    "preview": "yarn zenn preview",
+    "lint": "run-s lint:markdown lint:text lint:prettier lint:cspell",
+    "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
+    "lint:text": "textlint \"**/*.md\"",
+    "lint:prettier": "prettier --ignore-path .prettierignore --check .",
+    "lint:cspell": "cspell \"**\" .",
+    "prepare": "husky install"
   },
   "dependencies": {
-    "zenn-cli": "^0.1.125"
+    "cspell": "^6.12.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "markdownlint-cli2": "^0.5.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "textlint": "^12.2.2",
+    "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-rule-preset-ja-spacing": "^2.2.0",
+    "textlint-rule-preset-ja-technical-writing": "^7.0.0",
+    "textlint-rule-prh": "^5.3.0",
+    "zenn-cli": "^0.1.131"
   }
 }
