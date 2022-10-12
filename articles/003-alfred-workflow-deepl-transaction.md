@@ -23,9 +23,9 @@ ver1.1としてGoogleとDeepLの結果を同時に表示できるようにしま
 
 - DeepLアカウント（APIキーが必要なので）
 - Alfred PowerPack（有料版が必要です）
-- jq（homebrewとかでインストールしておいてもらえると）
+- jq（homebrewとかでインストール）
 
-インストール方法などは上記のGitHubのREADMEをご参照ください。
+インストール方法などは上記GitHubのREADMEをご参照ください。
 
 ### 使い方
 
