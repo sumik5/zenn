@@ -1,4 +1,5 @@
 node_modules
+prh
 .cspell.json
 *.log*
 *.md

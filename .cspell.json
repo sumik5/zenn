@@ -17,6 +17,7 @@
     ".textlintrc.yml",
     "node_modules",
     "package.json",
-    "yarn.lock"
+    "yarn.lock",
+    "prh"
   ]
 }

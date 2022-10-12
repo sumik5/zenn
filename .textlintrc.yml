@@ -25,8 +25,6 @@ rules:
       preferInBody: ですます
       preferInList: である
       strict: false
-    no-double-negative-ja:
-      severity: warning
     no-dropping-the-ra: true
     no-invalid-control-character: false
     no-hankaku-kana: true
@@ -41,9 +39,6 @@ rules:
         - "/[A-Z]/"
       allowCommonCase: true
     no-unmatched-pair: true
-    no-doubled-conjunctive-particle-ga:
-      severity: warning
-    no-doubled-conjunction: true
     no-nfd: true
     no-exclamation-question-mark:
       allowFullWidthExclamation: "true"
