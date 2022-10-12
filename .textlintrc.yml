@@ -1,87 +1,114 @@
----
-plugins:
-  "@textlint/markdown":
-    extensions:
-      - ".md"
 filters:
-  comments: "true"
+  comments: 'true'
+plugins:
+  '@textlint/markdown':
+    extensions:
+      - .md
 rules:
-  prh:
-    rulePaths:
-      - "./prh/index.yml"
+  '@textlint-ja/no-synonyms': true
+  '@textlint-ja/textlint-rule-no-dropping-i': true
+  '@textlint-ja/textlint-rule-no-insert-dropping-sa': true
+  abbr-within-parentheses: true
+  footnote-order: true
+  general-novel-style-ja:
+    appropriate_use_of_choonpu: true
+    appropriate_use_of_interpunct: true
+    appropriate_use_of_minus_sign: true
+    appropriate_use_of_punctuation: true
+    chars_leading_paragraph: false
+    even_number_dashes: true
+    even_number_ellipsises: true
+    max_arabic_numeral_digits: false
+    no_punctuation_at_closing_quote: false
+    space_after_marks: false
+  ja-hiragana-fukushi: true
+  ja-hiragana-hojodoushi: true
+  ja-hiragana-keishikimeishi: true
+  no-mixed-zenkaku-and-hankaku-alphabet: true
+  period-in-list-item:
+    allowEmoji: false
+    allowPeriodMarks: []
+    forceAppendPeriod: false
+    ignoreLinkEnd: true
+    periodMark: ''
+    periodMarks:
+      - .
+      - 。
+      - ．
+  prefer-tari-tari: true
+  preset-ja-spacing:
+    ja-nakaguro-or-halfwidth-space-between-katakana: true
+    ja-no-space-around-parentheses: true
+    ja-no-space-between-full-width: true
+    ja-space-after-exclamation: false
+    ja-space-after-question: false
+    ja-space-around-code:
+      after: 'true'
+      before: 'true'
+    ja-space-between-half-and-full-width:
+      space: never
   preset-ja-technical-writing:
-    sentence-length:
-      max: "150"
-      severity: warning
-    max-comma:
-      max: 3
-    max-ten:
-      max: 3
-    max-kanji-continuous-len:
-      max: 6
     arabic-kanji-numbers: true
-    no-mix-dearu-desumasu:
-      preferInHeader: ""
-      preferInBody: ですます
-      preferInList: である
-      strict: false
-    no-dropping-the-ra: true
-    no-invalid-control-character: false
-    no-hankaku-kana: true
-    ja-no-weak-phrase:
+    ja-no-abusage: true
+    ja-no-mixed-period:
+      allowPeriodMarks:
+        - ':'
+        - ：
+    ja-no-redundant-expression:
       severity: warning
     ja-no-successive-word: true
-    ja-no-abusage: true
-    ja-no-redundant-expression:
+    ja-no-weak-phrase:
       severity: warning
     ja-unnatural-alphabet:
       allow:
-        - "/[A-Z]/"
+        - /[A-Z]/
       allowCommonCase: true
-    no-unmatched-pair: true
-    no-nfd: true
-    no-exclamation-question-mark:
-      allowFullWidthExclamation: "true"
-      allowFullWidthQuestion: "true"
-    ja-no-mixed-period:
-      allowPeriodMarks:
-        - ":"
-        - "："
+    max-comma:
+      max: 3
+    max-kanji-continuous-len:
+      max: 6
+    max-ten:
+      max: 3
     no-doubled-joshi:
-      severity: warning
-      min_interval: 1
-      strict: "false"
       allow:
-        - "も"
-        - "や"
-        - "か"
+        - も
+        - や
+        - か
+      min_interval: 1
       separatorCharacters:
-        - ","
-        - "，"
-        - "、"
-        - "."
-        - "．"
-        - "。"
-        - "?"
-        - "!"
-        - "？"
-        - "！"
-        - "「"
-        - "」"
+        - ','
+        - ，
+        - 、
+        - .
+        - ．
+        - 。
+        - '?'
+        - '!'
+        - ？
+        - ！
+        - 「
+        - 」
         - '"'
-        - "”"
-        - "“"
-  preset-ja-spacing:
-    ja-space-around-code:
-      before: "true"
-      after: "true"
-    ja-space-between-half-and-full-width:
-      space: never
-    ja-no-space-between-full-width: true
-    ja-nakaguro-or-halfwidth-space-between-katakana: true
-    ja-no-space-around-parentheses: true
-    ja-space-after-exclamation: false
-    ja-space-after-question: false
+        - ”
+        - “
+      severity: warning
+      strict: 'false'
+    no-dropping-the-ra: true
+    no-exclamation-question-mark:
+      allowFullWidthExclamation: 'true'
+      allowFullWidthQuestion: 'true'
+    no-hankaku-kana: true
+    no-invalid-control-character: false
+    no-mix-dearu-desumasu:
+      preferInBody: ですます
+      preferInHeader: ''
+      preferInList: である
+      strict: false
+    no-nfd: true
+    no-unmatched-pair: true
+    sentence-length:
+      max: '150'
+      severity: warning
   preset-jtf-style:
     1.1.1.本文: true
     1.1.2.見出し: true
@@ -89,12 +116,12 @@ rules:
     1.1.5.図表のキャプション: true
     1.2.1.句点(。)と読点(、): true
     1.2.2.ピリオド(.)とカンマ(,): true
+    2.1.10.算用数字の位取りの表記: true
     2.1.2.漢字: false
     2.1.5.カタカナ: false
     2.1.6.カタカナの長音: false
     2.1.8.算用数字: true
     2.1.9.アルファベット: true
-    2.1.10.算用数字の位取りの表記: true
     2.2.1.ひらがなと漢字の使い分け: false
     2.2.2.算用数字と漢数字の使い分け: true
     2.2.3.一部の助数詞の表記: true
@@ -120,32 +147,14 @@ rules:
     4.3.6.中かっこ{ }: true
     4.3.7.山かっこ<>: true
     4.3.8.一重引用符: true
-  general-novel-style-ja:
-    chars_leading_paragraph: false
-    no_punctuation_at_closing_quote: false
-    space_after_marks: false
-    even_number_ellipsises: true
-    even_number_dashes: true
-    appropriate_use_of_punctuation: true
-    appropriate_use_of_interpunct: true
-    appropriate_use_of_choonpu: true
-    appropriate_use_of_minus_sign: true
-    max_arabic_numeral_digits: false
-  period-in-list-item:
-    periodMark: ""
-    periodMarks:
-      - "."
-      - "。"
-      - "．"
-    ignoreLinkEnd: true
-    allowPeriodMarks: []
-    allowEmoji: false
-    forceAppendPeriod: false
-  ja-hiragana-keishikimeishi: true
-  ja-hiragana-fukushi: true
-  ja-hiragana-hojodoushi: true
-  prefer-tari-tari: true
-  abbr-within-parentheses: true
-  no-mixed-zenkaku-and-hankaku-alphabet: true
-  footnote-order: true
-  "@textlint-ja/textlint-rule-no-insert-dropping-sa": true
+  prh:
+    rulePaths:
+      - ./prh/index.yml
+  textlint-rule-date-weekday-mismatch: true
+  textlint-rule-ja-no-inappropriate-words: true
+  textlint-rule-ja-no-orthographic-variants: true
+  textlint-rule-jis-charset: true
+  textlint-rule-no-hoso-kinshi-yogo: true
+  textlint-rule-no-surrogate-pair: true
+  textlint-rule-use-si-units: true
+  textlint-rule-write-good: true
