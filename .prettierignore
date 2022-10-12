@@ -3,3 +3,4 @@ prh
 .cspell.json
 *.log*
 *.md
+.textlintrc.yml
