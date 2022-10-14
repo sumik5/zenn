@@ -4,3 +4,4 @@ prh
 *.log*
 *.md
 .textlintrc.yml
+.github
