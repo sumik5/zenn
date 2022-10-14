@@ -3716,11 +3716,6 @@ textlint-rule-ja-unnatural-alphabet@2.0.1:
     match-index "^1.0.1"
     regx "^1.0.4"
 
-textlint-rule-jis-charset@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/textlint-rule-jis-charset/-/textlint-rule-jis-charset-0.1.0.tgz#ee86f4538c1e141a89fa17d2d76009087d35c194"
-  integrity sha512-gbqlPA4KYQTermHGeZzm2B3ZpGzv9Nv+ycwfnpeZdjUKtNunNdk1ndq3d65M6IFkicwqPcMvPb2fugj62WvZig==
-
 textlint-rule-max-comma@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/textlint-rule-max-comma/-/textlint-rule-max-comma-2.0.2.tgz#c204ae840b436d572d5c24e3a3056776992a882b"
@@ -3846,11 +3841,6 @@ textlint-rule-no-nfd@^1.0.2:
     match-index "^1.0.3"
     textlint-rule-helper "^2.1.1"
     unorm "^1.4.1"
-
-textlint-rule-no-surrogate-pair@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/textlint-rule-no-surrogate-pair/-/textlint-rule-no-surrogate-pair-1.0.1.tgz#9f9125ae21fd52a708a5487e52dcb34cced41caf"
-  integrity sha512-YwdvoBzUh/xiHgiyEEIw1IdD1yjs2GGr2UlE2tAdIF5aiqOVEy/gKg79xKp0cPO8c4DOOObmKvKTgs9Zv1tlNA==
 
 textlint-rule-no-zero-width-spaces@^1.0.1:
   version "1.0.1"
