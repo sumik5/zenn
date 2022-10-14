@@ -8,7 +8,7 @@
     "new:article": "yarn zenn new:article",
     "new:book": "yarn zenn new:book",
     "preview": "yarn zenn preview",
-    "lint": "run-s lint:markdown lint:text lint:prettier lint:cspell",
+    "lint": "run-s lint:*",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
     "lint:text": "textlint \"**/*.md\"",
     "lint:prettier": "prettier --ignore-path .prettierignore --check .",
@@ -57,7 +57,7 @@
     ],
     "*": [
       "prettier --check",
-      "cspell"
+      "cspell --no-must-find-files"
     ]
   },
   "devDependencies": {}
