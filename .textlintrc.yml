@@ -153,8 +153,6 @@ rules:
   textlint-rule-date-weekday-mismatch: true
   textlint-rule-ja-no-inappropriate-words: true
   textlint-rule-ja-no-orthographic-variants: true
-  textlint-rule-jis-charset: true
   textlint-rule-no-hoso-kinshi-yogo: true
-  textlint-rule-no-surrogate-pair: true
   textlint-rule-use-si-units: true
   textlint-rule-write-good: true
