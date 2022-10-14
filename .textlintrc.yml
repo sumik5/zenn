@@ -71,6 +71,7 @@ rules:
       max: 3
     no-doubled-joshi:
       allow:
+        - の
         - も
         - や
         - か
