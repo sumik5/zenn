@@ -8,8 +8,8 @@ published: true
 
 本記事は[textlintプラグインの作り方(例：オンドゥル語変換) プラグイン作成編](https://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)の続きにあたります。
 
-* [準備編](ttps://zenn.dev/shivase/articles/006-how-to-create-new-textlint-plugin-1)
-* [プラグイン作成編](ttps://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)
+* [準備編](https://zenn.dev/shivase/articles/006-how-to-create-new-textlint-plugin-1)
+* [プラグイン作成編](https://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)
 * リリース編 ← 本記事
 
 ## 本記事概要

@@ -11,13 +11,13 @@ published: true
 長くなりそうなので記事を分割します！
 
 * 準備編 ← 本記事
-* [プラグイン作成編](ttps://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)
-* [リリース編](ttps://zenn.dev/shivase/articles/008-how-to-create-new-textlint-plugin-3)
+* [プラグイン作成編](https://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)
+* [リリース編](https://zenn.dev/shivase/articles/008-how-to-create-new-textlint-plugin-3)
 
 ## 本記事概要
 
 プラグインを作成するにあたって必要な、以下の手順を記載していきます。
-具体的なロジックだけ知りたい人は次の[プラグイン作成編](ttps://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)に進んでください。
+具体的なロジックだけ知りたい人は次の[プラグイン作成編](https://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)に進んでください。
 
 * create-textlint-ruleを使ったテンプレートの作成
 * Linter（eslint/prettier/husky/lint-staged）のインストール
@@ -339,4 +339,4 @@ vscodeの設定に以下を追記。
 
 以上で準備編は終わりです。
 
-次の[プラグイン作成編はこちら](ttps://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)
+次の[プラグイン作成編はこちら](https://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)

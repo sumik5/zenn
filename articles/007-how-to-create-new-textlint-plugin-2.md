@@ -8,9 +8,9 @@ published: true
 
 本記事は[textlintプラグインの作り方(例：オンドゥル語変換) 準備編](https://zenn.dev/shivase/articles/006-how-to-create-new-textlint-plugin-1)の続きにあたります。
 
-* [準備編](ttps://zenn.dev/shivase/articles/006-how-to-create-new-textlint-plugin-1)
+* [準備編](https://zenn.dev/shivase/articles/006-how-to-create-new-textlint-plugin-1)
 * プラグイン作成編 ← 本記事
-* [リリース編](ttps://zenn.dev/shivase/articles/008-how-to-create-new-textlint-plugin-3)
+* [リリース編](https://zenn.dev/shivase/articles/008-how-to-create-new-textlint-plugin-3)
 
 ## 本記事概要
 
@@ -469,7 +469,7 @@ To https://github.com/shivase/textlint-rule-ondul-style.git
 
 次はテストを書いて、リリースまでしていきます。
 
-[リリース編へ](ttps://zenn.dev/shivase/articles/008-how-to-create-new-textlint-plugin-3)
+[リリース編へ](https://zenn.dev/shivase/articles/008-how-to-create-new-textlint-plugin-3)
 
 ## プラグイン参考にしたリポジトリ
 
