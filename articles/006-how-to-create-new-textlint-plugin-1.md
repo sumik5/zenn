@@ -2,8 +2,8 @@
 title: "textlintプラグインの作り方(例：オンドゥル語変換) 準備編"
 emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [ "textlint" ]
-published: false
+topics: [ "textlint","github","typescript","git" ]
+published: true
 ---
 
 先日textlintの新しいプラグイン `a3rt-proofreading-v2` をリリースしました。そして[textlint a3rt-proofreading-v2をリリースしました](https://zenn.dev/shivase/articles/005-textlint-a3rt-proofreading)と記事にしましたが、備忘録も兼ねてプラグインの作り方を記事にします。
@@ -12,19 +12,29 @@ published: false
 
 * 準備編 ← 本記事
 * [プラグイン作成編](ttps://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)
+* [リリース編](ttps://zenn.dev/shivase/articles/008-how-to-create-new-textlint-plugin-3)
 
-## textlintプラグインの作り方
+## 本記事概要
 
-### 作成するプラグインの概要
+プラグインを作成するにあたって必要な、以下の手順を記載していきます。
+具体的なロジックだけ知りたい人は次の[プラグイン作成編](ttps://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)に進んでください。
 
-対象の文字列をオンドゥル語変換する。サジェスションへのFixにも対応。
+* create-textlint-ruleを使ったテンプレートの作成
+* Linter（eslint/prettier/husky/lint-staged）のインストール
+* textlintのインストール
 
-### 前提知識
+## 作成するプラグインの概要
+
+対象の文字列をオンドゥル語として正しいかチェックする。サジェスションへのFixにも対応する。
+
+![ondul-style-img](/images/006/ondul.gif)
+
+## 前提知識
 
 以下はすでにインストール済みとし、ある程度コマンド自体は知っている前提で進めていきます。
 
 * node
-* yarn（or npm）
+* yarn（and npm）
 * Git
 * Visual Studio Code
 
@@ -36,7 +46,9 @@ published: false
 私の環境はmacですので、windowsの方はうまく読み取って実行お願いします。
 コマンドは基本的にvisual studio code上で実行しています。
 
-### フォルダーの作成
+## 準備
+
+### ベースフォルダーの作成
 
 プラグイン名を `ondul-style` にするため、フォルダー名は `textlint-rule-ondul-style` として適当な場所に作成してください。
 
@@ -73,8 +85,10 @@ license: (ISC) MIT
 ```bash
 $ git init
 $ git add .
-$ git commit -m "initial commit"
+$ git commit -m "feat: initial commit"
+$ git branch -M main
 $ git remote add origin https://github.com/shivase/textlint-rule-ondul-style.git
+$ git push -u origin main
 $ git checkout -b v1.0.0
 Switched to a new branch 'v1.0.0'
 ```
@@ -83,7 +97,7 @@ Switched to a new branch 'v1.0.0'
 
 開発中のエラーにいちはやく気付ける＋自動的に修正してくれるように各種Linterを追加します。
 
-#### ESLint関連
+#### ESLintインストール
 
 必要なモジュールのインストール。
 
@@ -112,7 +126,7 @@ node_modules
 lib
 ```
 
-#### prettier
+#### prettierインストール
 
 必要なモジュールのインストールとファイル作成。
 
@@ -132,7 +146,6 @@ touch .prettierignore
   "bracketSpacing": true,
   "bracketSameLine": true,
   "trailingComma": "all",
-  "htmlWhitespaceSensitivity": "ignore",
   "endOfLine": "auto"
 }
 ```
@@ -144,12 +157,12 @@ node_modules
 lib
 ```
 
-#### huskyとlint-stage
+#### huskyとlint-stageインストール
 
 Gitでcommit時に、自動的に上でインストールしたlinterを実行してくれるように、`husky` と `lint-staged` を入れていきます。
 
 ```bash
-$ yarn add -D husky lint-staged npm-run-all
+$ yarn add -D husky lint-staged npm-run-all rimraf
 $ husky install
 husky - Git hooks installed
 $ touch .husky/pre-commit
@@ -170,12 +183,16 @@ yarn lint-staged
 package.jsonを修正し、インストールしたLinterが動くようにします。
 
 ```json:package.json
-   /* scriptsはすでにあるので、以下の4行を追加です */
+   /* scriptsはすでにあるので、以下の6行を追加です */
   "scripts": {
     "prepare": "husky install",
+    /* build時に、古いlibフォルダを削除 */
+    "prebuild": "rimraf lib",
     "lint": "run-s lint:*",
     "lint:eslint": "eslint . --ext .ts --fix",
     "lint:prettier": "prettier --write .",
+    /* npmでpublishするとき前に、buildされるように定義(既存定義の修正です) */
+    "prepublish": "yarn build",
   },
   /* 最下行に追加してください */
   "lint-staged": {
@@ -191,8 +208,8 @@ package.jsonを修正し、インストールしたLinterが動くようにし�
 ```bash
 $ yarn lint
 yarn run v1.22.19
-$ run-s lint:*
-$ eslint . --ext .ts --fix
+run-s lint:*
+eslint . --ext .ts --fix
 
 /textlint-rule-ondul-style/src/index.ts
    9:31  error  'report' is already declared in the upper scope on line 8 column 7                                         @typescript-eslint/no-shadow
@@ -210,16 +227,49 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 `src/index.ts` を修正しましょう。
 reportの定義が被っているので関数名の変更と、 `||` を `??` に変えます。
 
-https://github.com/shivase/textlint-rule-ondul-style/blob/v1.0.0/src/index.ts
+```typescript
+import { TextlintRuleModule } from '@textlint/types';
+
+export interface Options {
+  // if the Str includes `allows` word, does not report it
+  allows?: string[];
+}
+
+const reporter: TextlintRuleModule<Options> = (context, options = {}) => {
+  const { Syntax, RuleError, report, getSource } = context;
+  const allows = options.allows ?? [];
+
+  return {
+    [Syntax.Str](node) {
+      // "Str" node
+      const text = getSource(node); // Get text
+      const matches = /bugs/g.exec(text); // Found "bugs"
+      if (!matches) {
+        return;
+      }
+      const isIgnored = allows.some((allow) => text.includes(allow));
+      if (isIgnored) {
+        return;
+      }
+      const indexOfBugs = matches.index;
+      const ruleError = new RuleError('Found bugs.', {
+        index: indexOfBugs, // padding of index
+      });
+      report(node, ruleError);
+    },
+  };
+};
+export default reporter;
+```
 
 そして再度 `yarn lint` を実行してエラーがなければOKです！
 
 ```bash
 $ yarn lint
 yarn run v1.22.19
-$ run-s lint:*
-$ eslint . --ext .ts --fix
-$ prettier --write .
+run-s lint:*
+eslint . --ext .ts --fix
+prettier --write .
 .eslintrc.yml 49ms
 .prettierrc 52ms
 package-lock.json 173ms
@@ -231,6 +281,16 @@ tsconfig.json 3ms
 ✨  Done in 7.71s.
 ```
 
+### textlintのインストール
+
+最後にローカルでtextlintを実行して検証できるように、 `textlint` を入れておきます。
+
+```bash
+yarn add -D textlint
+```
+
+## 変更のcommit
+
 これで必要最低限の準備はできました。さっそくcommitしてGitHubにあげましょう。
 
 ```bash
@@ -239,8 +299,8 @@ $ git add .
 # commit時に以下のようにlinterが走ればhuskyは正常に設定できています
 # 何も実行されない場合、chmod +x を忘れている可能性大
 $ git commit -m "feat: linterを準備"
-$ yarn run v1.22.19
-$ .bin/lint-staged
+yarn run v1.22.19
+.bin/lint-staged
 ✔ Preparing lint-staged...
 ✔ Hiding unstaged changes to partially staged files...
 ✔ Running tasks for staged files...
@@ -255,9 +315,26 @@ $ .bin/lint-staged
  create mode 100644 .husky/pre-commit
  create mode 100644 .prettierignore
  create mode 100644 .prettierrc
+```
 
-# 問題なければ push しましょう
-$ git push origin v1.0.0
+## Visual Studio Codeの拡張機能追加
+
+linterをvisual studio codeで動かすため、そして作ったtextlintプラグインの動作を検証するために、visual studio codeの拡張機能をインストールしましょう。
+
+手順は割愛しますが、以下をインストールしてください。
+
+* ESLint
+* Prettier
+* vscode-textlint
+
+vscodeの設定に以下を追記。
+
+```json:setting.json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  ...
+}
 ```
 
 以上で準備編は終わりです。
