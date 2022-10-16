@@ -29,6 +29,8 @@ published: true
 
 ![ondul-style-img](/images/006/ondul.gif)
 
+![ondul-style-gif](/images/008/ondul-style.gif)
+
 ## 前提知識
 
 以下はすでにインストール済みとし、ある程度コマンド自体は知っている前提で進めていきます。
