@@ -1,7 +1,7 @@
 ---
 title: "Obisidian Textlint pluginを作りました"
 emoji: "📔"
-type: "idea" # tech: 技術記事 / idea: アイデア
+type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [ 'obsidian', 'textlint' ]
 published: true
 ---
@@ -14,7 +14,7 @@ textlintでの文章校正が当たり前になってしまうと、自動校正
 
 ![動作イメージ](/images/011/sample-image.png)
 
-仕事ではNotionを使っているので、そちらのchrome拡張とどちらを作ろうか悩んで、Obsdianはpluginで気軽に作れそうだったのでtexlint開発の練習で作った次第です。
+仕事ではNotionを使っているので、そちらのchrome拡張とどちらを作ろうか悩んで、Obsidianはpluginで気軽に作れそうだったのでtexlint開発の練習で作った次第です。
 
 まだ知ったばかりで全然初心者の域を出ていないため、機能として不十分なところが多々あると思いますがご了承ください。
 
