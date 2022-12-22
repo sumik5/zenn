@@ -1,12 +1,12 @@
 ---
-title: "Obisidian Textlint pluginを作りました"
+title: "Obsidian Textlint pluginを作りました"
 emoji: "📔"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [ 'obsidian', 'textlint' ]
 published: true
 ---
 
-みなさんObsidianは使っていますか？　obisidianはMarkdownなメモアプリケーションですが、textlintが動けばなぁと思っていた人に朗報？です。
+みなさんObsidianは使っていますか？　obsidianはMarkdownなメモアプリケーションですが、textlintが動けばなぁと思っていた人に朗報？です。
 
 textlintでの文章校正が当たり前になってしまうと、自動校正してくれないソフトに乗り換えるのはどうしても考えてしまうのですが、今後obsidianを使ってみたかったのでプラグインを作成しました。
 
