@@ -5,3 +5,4 @@ prh
 *.md
 .textlintrc.yml
 .github
+pnpm-lock.yaml
