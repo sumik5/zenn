@@ -1749,11 +1749,6 @@ rules:
     pattern: /デコーダー/
   - expected: エミュレータ
     pattern: /エミュレーター/
-  - expected: エンティティ
-    pattern:
-      - Entity
-      - entity
-      - エンティティー
   - expected: エントリ
     pattern: /エントリー/
   - expected: オブザーバ
