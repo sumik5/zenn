@@ -631,8 +631,6 @@ rules:
     expected: ときおり
   - pattern: 時々
     expected: ときどき
-  - pattern: とくに
-    expected: 特に
   - pattern:
       - 何処
       - 何所
@@ -1749,8 +1747,6 @@ rules:
     pattern: /デコーダー/
   - expected: エミュレータ
     pattern: /エミュレーター/
-  - expected: エントリ
-    pattern: /エントリー/
   - expected: オブザーバ
     pattern: /オブザーバー|オブサーバー|オブサーバ/
   - expected: オプション
