@@ -6,3 +6,6 @@ prh
 .textlintrc.yml
 .github
 pnpm-lock.yaml
+*.gif
+*.toml
+.husky
