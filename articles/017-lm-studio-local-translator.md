@@ -28,9 +28,7 @@ plamoの翻訳に特化した`plamo-2-translate`が発表されてから、ず�
 
 ### ダウンロード
 
-[📦 LLM Translator v1.0.0 - ダウンロード (ZIP)](https://github.com/sumik5/llm-translate/releases/download/v1.0.0/llm-translator-v1.0.0.zip)
-
-[GitHub Release ページ](https://github.com/sumik5/llm-translate/releases/tag/v1.0.0)
+[📦 LLM Translator - Release](https://github.com/sumik5/llm-translate/releases) より最新版をダウンロードしてください。
 
 このツールは、LM Studioのローカルサーバーと連携して、テキストやepubファイルを翻訳するHTMLアプリケーションです。対応言語は使用するLLMモデルに依存します。
 
@@ -54,7 +52,7 @@ plamoの翻訳に特化した`plamo-2-translate`が発表されてから、ず�
 
 ### 2. 翻訳ツールの使用
 
-1. [上記のダウンロードリンク](https://github.com/sumik5/llm-translate/releases/download/v1.0.0/llm-translator-v1.0.0.zip)からZIPファイルをダウンロード
+1. [📦 LLM Translator - Release](https://github.com/sumik5/llm-translate/releases) から最新版のZIPファイルをダウンロード
 2. ZIPファイルを解凍
 3. ブラウザで`translator.html`を開く
 4. テキストを入力するか、epubファイルをアップロード
