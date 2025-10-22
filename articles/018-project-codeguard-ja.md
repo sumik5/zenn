@@ -2,7 +2,7 @@
 title: "シスコのProject CodeGuardで生成AIによるコードセキュリティチェック(+日本語化)"
 emoji: "🌐"
 type: "tech"
-topics: ["claudecode", "生成AI", "セキュリティ"]
+topics: ["claudecode", "生成AI", "セキュリティ","zennfes2025ai","zennfes2025infra"]
 published: true
 ---
 
@@ -16,7 +16,7 @@ published: true
 
 ## インストール方法(Claude Codeの場合)
 
-私は普段claude codeを利用していますが、レポジトリを除くと claude codeのplugin設定が見つかったので、もしかしてと思ってpluginコマンドでインストールを試したらできました。
+私は普段claude codeを利用していますが、レポジトリをみるとclaude codeのplugin設定が見つかったので、もしかしてと思ってpluginコマンドでインストールを試したらできました。
 
 ```bash
 claude plugin marketplace add project-codeguard/rules
