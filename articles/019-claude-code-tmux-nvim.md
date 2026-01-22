@@ -1,5 +1,5 @@
 ---
-title: "Claude CodeのプロンプトをNeovimで使う（tmux版)"
+title: "Claude CodeのプロンプトをNeovimで書く（tmux版)"
 emoji: "🌐"
 type: "tech"
 topics: ["neovim", "fzf", "tmux","claude","claudecode"]
