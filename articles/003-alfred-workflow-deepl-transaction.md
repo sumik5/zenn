@@ -12,13 +12,13 @@ published: true
 
 https://github.com/shivase/alfred-worlflow-deepl-google-translation
 
-### 追記
+## 追記
 
 ver1.1としてGoogleとDeepLの結果を同時に表示できるようにしました。（それぞれホットキーで個別に結果表示も可能です）
 
 ![deeplandgoogle](/images/003/deeplandgoogle.png)
 
-### 必要なもの
+## 必要なもの
 
 - DeepLアカウント（APIキーが必要なので）
 - Alfred PowerPack（有料版が必要です）
@@ -26,11 +26,11 @@ ver1.1としてGoogleとDeepLの結果を同時に表示できるようにしま
 
 インストール方法などは上記GitHubのREADMEをご参照ください。
 
-### 使い方
+## 使い方
 
 クリップボードの値をそのまま使うので、翻訳したい文字をコピー（ctrl+c）して、設定したホットキーを押してください。自動的にブラウザで変換結果が表示されます。
 
-### 今後
+## 今後
 
 いろいろ8つけで作ったので、日本語 → 英語の変換もしたいですし、不親切な部分の修正もします。
 

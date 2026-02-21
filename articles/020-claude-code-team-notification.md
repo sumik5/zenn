@@ -1,5 +1,5 @@
 ---
-title: "Claude Code Teamの終了通知をイベントごとに切り分ける"
+title: "Claude Codeのhook通知、イベントごとに音を変えたら快適だった"
 emoji: "🔔"
 type: "tech"
 topics: ["claudecode", "claude", "macos"]
@@ -8,26 +8,47 @@ published: true
 
 ## はじめに
 
-Claude Code TeamのAgent Team APIを使うと、メインセッション、Task toolで起動したサブエージェント、TeamCreateで起動したチームメイトが同時に動きます。便利なんですが、通知が鳴っても**どのエージェントの話か分からない**のが地味にストレスでした。tmuxで複数セッションを走らせていればなおさらです。
+Claude CodeのAgent Team APIでは、メインセッション・サブエージェント・チームメイトが同時に動きます。通知が鳴っても**どのエージェントの話なのか分からない**のが地味にストレスでした。tmuxで複数セッションを走らせているとなおさらです。
 
-hookイベントごとに通知音とアイコンを変えたところ、音だけでどれが終わったか分かるようになったので、その設定方法を共有します。
+hookイベントごとに通知音とアイコンを変えたところ、画面を見なくても判別できるようになりました。その設定を紹介します。
+
+## 通知の全体像
+
+設定後はこうなります。
+
+| hookイベント | スクリプト | 通知音 | アイコン | グループID |
+| --- | --- | --- | --- | --- |
+| Stop | notify-complete.sh | Glass | ToolbarInfo | claude-code-stop |
+| SubagentStop | notify-subagent-stop.sh | Pop | ToolbarAdvanced | claude-code-subagent |
+| TeammateIdle | notify-teammate-idle.sh | Tink | GroupIcon | claude-code-teammate |
+| Notification | notify-waiting.sh | Glass | (なし) | (なし) |
+
+Glass、Pop、Tinkと音色が違うので、画面を見なくてもどのイベントか分かります。
+
+## 前提条件
+
+`terminal-notifier` を入れると、グループIDによる通知のまとめ表示やアイコン指定が使えます。
+
+```bash
+brew install terminal-notifier
+```
+
+なくても `osascript` で通知自体は動きます。ただしグループIDとアイコンは効きません。
 
 ## hookイベントの種類
 
 使うhookイベントは4つです。
 
 | hookイベント | 発火タイミング |
-|---|---|
+| --- | --- |
 | `Stop` | メインセッション完了時 |
 | `SubagentStop` | Task toolで起動したサブエージェント終了時 |
 | `TeammateIdle` | TeamCreateで起動したチームメイトがアイドル状態になった時 |
 | `Notification` | Claude Codeが入力待ち状態になった時 |
 
-それぞれ別のスクリプトを割り当てれば、通知音だけでどのイベントか判別できます。
+## ファイル構成
 
-## 全体構成
-
-```
+```text
 ~/.claude/
 ├── settings.json          # hookの設定
 └── hooks/
@@ -88,13 +109,22 @@ hookイベントごとに通知音とアイコンを変えたところ、音だ�
 }
 ```
 
-## 各スクリプトの解説
+## 各スクリプト
+
+4つのスクリプトは共通の構造です。
+
+1. stdinからhookのJSONデータを読む
+2. jq（なければpython3）でパースする
+3. 通知メッセージを組み立てる
+4. terminal-notifier（なければosascript）で通知する
+
+違いは「JSONから何を取り出すか」と「通知音・アイコンの設定」だけです。
 
 ### notify-complete.sh（Stop hook）
 
 メインセッション完了時に発火します。プロジェクト名をサブタイトル、最後のアシスタントメッセージの先頭行を本文に表示します。
 
-ポイントは `stop_hook_active` フラグのチェックです。これを省くと通知処理自体がStopイベントをトリガーして無限ループになります。
+冒頭の `stop_hook_active` チェックが重要です。これを省くと、通知スクリプト自体がStopイベントを再発火させて無限ループに陥ります。
 
 ```bash
 #!/bin/bash
@@ -132,7 +162,7 @@ else
     BODY="作業完了"
 fi
 
-# サニタイズ関数（ダブルクォート・バックスラッシュ・改行を除去）
+# サニタイズ（ダブルクォート・バックスラッシュ・改行を除去）
 sanitize() {
     echo "$1" | tr -d '"\\' | tr '\n\r' ' '
 }
@@ -170,7 +200,7 @@ echo "通知完了: ${PROJECT_NAME}"
 
 ### notify-subagent-stop.sh（SubagentStop hook）
 
-Task toolで起動したサブエージェントの終了時に発火します。サブタイトルに `agent_type` を表示し、通知音を「Pop」にしてStopの「Glass」と区別しています。
+サブエージェントの終了時に発火します。サブタイトルに `agent_type` を表示し、通知音を「Pop」にしてStopの「Glass」と区別します。
 
 ```bash
 #!/bin/bash
@@ -200,7 +230,7 @@ else
     BODY="完了"
 fi
 
-# サニタイズ関数（ダブルクォート・バックスラッシュ・改行を除去）
+# サニタイズ（ダブルクォート・バックスラッシュ・改行を除去）
 sanitize() {
     echo "$1" | tr -d '"\\' | tr '\n\r' ' '
 }
@@ -256,7 +286,7 @@ else
     TEAM_NAME=$(echo "$HOOK_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('team_name', ''))" 2>/dev/null || echo "")
 fi
 
-# サニタイズ関数（ダブルクォート・バックスラッシュ・改行を除去）
+# サニタイズ（ダブルクォート・バックスラッシュ・改行を除去）
 sanitize() {
     echo "$1" | tr -d '"\\' | tr '\n\r' ' '
 }
@@ -294,7 +324,7 @@ echo "通知完了: ${TEAMMATE_NAME} (${TEAM_NAME})"
 
 ### notify-waiting.sh（Notification hook）
 
-入力待ち状態で発火します。グループIDは設定せず、シンプルに通知だけ飛ばしています。コメントに通知音の候補を列挙してあるので、好みで変えてみてください。
+入力待ち状態で発火します。他の3つと違い、terminal-notifierではなくosascriptのみで実装しています。通知音の候補をコメントに列挙してあるので、好みで変えてください。
 
 ```bash
 #!/bin/bash
@@ -346,49 +376,26 @@ wait
 echo "通知完了: ${PROJECT_NAME}"
 ```
 
-## 通知の使い分けまとめ
-
-| hookイベント | スクリプト | 通知音 | アイコン | グループID | 用途 |
-|---|---|---|---|---|---|
-| Stop | notify-complete.sh | Glass | ToolbarInfo | claude-code-stop | メインセッション完了 |
-| SubagentStop | notify-subagent-stop.sh | Pop | ToolbarAdvanced | claude-code-subagent | サブエージェント終了 |
-| TeammateIdle | notify-teammate-idle.sh | Tink | GroupIcon | claude-code-teammate | チームメイト待機 |
-| Notification | notify-waiting.sh | Glass | (なし) | (なし) | 入力待ち |
-
-## 前提条件
-
-`terminal-notifier` を入れるとグループIDによる通知のグルーピングが使えます。
-
-```bash
-brew install terminal-notifier
-```
-
-なくても `osascript` で通知自体は動きます。ただしグループIDとアイコン指定は効きません。
-
 ## 設計のポイント
 
-**通知音の使い分け**
+### グループIDで通知をまとめる
 
-Glass、Pop、Tinkと音を変えておくと、画面を見なくてもどのイベントか分かります。実際に使ってみると、耳だけで判別できるのが想像以上に楽でした。
+terminal-notifierの `-group` オプションで、通知センター上をイベント種別ごとにグルーピングできます。同じグループIDの通知は新しいもので上書きされるため、通知センターがあふれません。
 
-**グループIDでまとめる**
+### `stop_hook_active` による無限ループ防止
 
-terminal-notifierの `-group` オプションで、通知センター上をイベント種別ごとにグループ化できます。同じグループIDの新しい通知が来ると前のを上書きするので、通知センターがあふれません。
+Stop hookのスクリプトが完了すると、それ自体がStopイベントを再トリガーします。Claude Codeはこの再帰呼び出し時に `stop_hook_active: true` を送るので、先頭で必ずチェックしてください。
 
-**`stop_hook_active` で無限ループを防ぐ**
+### jqなしでも動くフォールバック
 
-Stopフックのスクリプトがそれ自体Stopイベントをトリガーすると無限ループになります。Claude Codeは `stop_hook_active: true` を送ってくるので、必ずチェックしてください。
+jqが入っていない環境向けにpython3をフォールバックにしています。macOSにはpython3が標準搭載されているので、追加インストールなしで動きます。
 
-**jqがなくてもpython3で動く**
+### サニタイズの必要性
 
-jqが入っていない環境向けにpython3をフォールバックにしています。macOSにはpython3が標準で入っているので、大抵の環境はこれでカバーできます。
-
-**サニタイズ処理**
-
-通知メッセージにダブルクォートやバックスラッシュが混じると `osascript` や `terminal-notifier` の引数解析が壊れます。`tr` で除去して表示崩れを防いでいます。
+通知メッセージにダブルクォートやバックスラッシュが混じると、`osascript` や `terminal-notifier` の引数解析が壊れます。`tr` で事前に除去して表示崩れを防いでいます。
 
 ## おわりに
 
-hookを種類ごとに切り分けるだけで、並列開発中の通知ストレスがほぼなくなりました。
+hookを種類ごとに切り分けるだけで、並列開発中の「今の通知、どれ？」がなくなりました。
 
-hookイベントは今回の4種類以外にも `SessionStart` や `PostToolUse` があります。作業開始時に音を鳴らしたり、特定ツールの使用後に処理を挟んだりもできるので、好みに合わせて試してみてください。
+hookイベントは今回の4種類以外にも `SessionStart` や `PostToolUse` があります。作業開始時の通知や特定ツール使用後の後処理にも使えるので、試してみてください。
