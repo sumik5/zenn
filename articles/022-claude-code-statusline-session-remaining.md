@@ -46,7 +46,20 @@ Claude Code Teamで複数セッションを並列に走らせていると、5時
 
 ## セットアップ
 
-2ステップで終わります。
+### 前提
+
+- **jq**: JSONパースに使用
+- **[ccusage](https://github.com/ryoppippi/ccusage)**: セッション残量の取得に使用
+
+```bash
+# macOS
+brew install jq ccusage
+
+# または npx で直接実行（インストール不要）
+npx ccusage@latest
+```
+
+ccusageが未インストールの場合、セッション残のセグメントだけが省略され、他はそのまま動きます。
 
 ### 1. スクリプトを配置
 
@@ -64,8 +77,6 @@ Claude Code Teamで複数セッションを並列に走らせていると、5時
   }
 }
 ```
-
-ccusageが未インストールの場合、セッション残のセグメントだけが省略され、他はそのまま動きます。
 
 ## コード全文
 
@@ -107,7 +118,13 @@ if command -v ccusage &>/dev/null; then
     now=$(date +%s)
     mtime=$(stat -c "%Y" "$CCUSAGE_CACHE" 2>/dev/null) && [ -n "$mtime" ] \
       || mtime=$(stat -f "%m" "$CCUSAGE_CACHE" 2>/dev/null) || mtime=0
-    [ $((now - mtime)) -lt "$CCUSAGE_TTL" ] && cache_age_ok=true
+    has_data=$(jq -r '.blocks | length > 0' "$CCUSAGE_CACHE" 2>/dev/null || echo "false")
+    if [ "$has_data" = "true" ]; then
+      ttl=$CCUSAGE_TTL
+    else
+      ttl=30
+    fi
+    [ $((now - mtime)) -lt "$ttl" ] && cache_age_ok=true
   fi
 
   if [ -f "$CCUSAGE_CACHE" ]; then
@@ -198,9 +215,11 @@ ccusageの直接実行は約17秒かかります。statuslineは頻繁に呼ば�
 
 Webのキャッシュ戦略と同じ考え方で解決しました。
 
-1. **キャッシュが有効（TTL 5分以内）**: そのまま使う
+1. **キャッシュが有効（TTL内）**: そのまま使う
 2. **キャッシュが期限切れ**: 古いデータを即座に返しつつ、バックグラウンドで更新
 3. **キャッシュが存在しない**: セッション残セグメントを省略し、バックグラウンドで取得開始
+
+TTLはキャッシュの中身に応じて可変にしています。アクティブブロックが存在する場合は5分、空（`"blocks":[]`）の場合は30秒です。セッション開始直後やレートブロック切り替え時は空データが返るため、短いTTLで素早く再取得します。
 
 ```bash
 # バックグラウンド更新（ブロックしない）
