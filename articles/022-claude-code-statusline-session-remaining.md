@@ -28,7 +28,7 @@ Claude Code Teamで複数セッションを並列に走らせていると、5時
 
 | セグメント | データソース | 説明 |
 | --- | --- | --- |
-| `📋 usage` | stdin JSON `session_name` | `/rename` 済みの場合のみ表示。UUID名は非表示 |
+| `📋 usage` | stdin JSON `session_name` | `/rename` 済みの場合非表示。UUID時は表示|
 | `🤖 Opus 4.6` | stdin JSON `model.display_name` | 使用中のモデル名 |
 | `💵 $12.05` | stdin JSON `cost.total_cost_usd` | セッション累計コスト（Bedrock時は非表示） |
 | `🟠 残28.8%(2h 21m left)` | ccusageキャッシュ | 5時間レート制限ウィンドウの残量 |
@@ -157,10 +157,10 @@ ctx_str="${ctx_ind} CTX残${ctx_remaining}%"
 
 # ─── Output ───
 
-# Session name: only show if renamed (not a UUID)
+# Session name: only show if still a UUID (reminder to rename)
 session_str=""
-if [[ ! "$session_name" =~ ^[0-9a-f]{8}-[0-9a-f]{4}- ]]; then
-  session_str="📋 $session_name │ "
+if [[ "$session_name" =~ ^[0-9a-f]{8}-[0-9a-f]{4}- ]]; then
+  session_str="📋 ${session_name:0:8}… │ "
 fi
 
 if [ "${CLAUDE_CODE_USE_BEDROCK:-0}" != "0" ]; then
