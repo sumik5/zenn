@@ -21,7 +21,7 @@ hookイベントごとに通知音とアイコンを変えたところ、画面�
 | Stop | notify-complete.sh | Glass | ToolbarInfo | claude-code-stop |
 | SubagentStop | notify-subagent-stop.sh | Pop | ToolbarAdvanced | claude-code-subagent |
 | TeammateIdle | notify-teammate-idle.sh | Tink | GroupIcon | claude-code-teammate |
-| Notification | notify-waiting.sh | Glass | (なし) | (なし) |
+| Notification | notify-waiting.sh | Glass | （なし） | （なし） |
 
 Glass、Pop、Tinkと音色が違うので、画面を見なくてもどのイベントか分かります。
 
@@ -43,8 +43,8 @@ brew install terminal-notifier
 | --- | --- |
 | `Stop` | メインセッション完了時 |
 | `SubagentStop` | Task toolで起動したサブエージェント終了時 |
-| `TeammateIdle` | TeamCreateで起動したチームメイトがアイドル状態になった時 |
-| `Notification` | Claude Codeが入力待ち状態になった時 |
+| `TeammateIdle` | TeamCreateで起動したチームメイトがアイドル状態になったとき |
+| `Notification` | Claude Codeが入力待ち状態になったとき |
 
 ## ファイル構成
 
@@ -268,7 +268,7 @@ echo "通知完了: ${AGENT_TYPE}"
 
 ### notify-teammate-idle.sh（TeammateIdle hook）
 
-チームメイトがアイドル状態になったときに発火します。`teammate_name` と `team_name` を表示するので、どのチームの誰が待機中か一目で分かります。
+チームメイトがアイドル状態へ移行すると発火します。`teammate_name` と `team_name` を表示するので、どのチームの誰が待機中か一目で分かります。
 
 ```bash
 #!/bin/bash
@@ -398,4 +398,4 @@ jqが入っていない環境向けにpython3をフォールバックにして�
 
 hookを種類ごとに切り分けるだけで、並列開発中の「今の通知、どれ？」がなくなりました。
 
-hookイベントは今回の4種類以外にも `SessionStart` や `PostToolUse` があります。作業開始時の通知や特定ツール使用後の後処理にも使えるので、試してみてください。
+hookイベントは今回の4種類以外にも `SessionStart` や `PostToolUse` があります。作業開始時の通知や特定ツール使用後の後処理にも使えるので、ぜひ活用してください。

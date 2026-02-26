@@ -14,7 +14,7 @@ published: true
 
 ## 本記事概要
 
-最後にパッケージをリリース、実際のvisual studio codeで動くかまで実施していきます。
+最後にパッケージをリリース、実際のvisual studio codeで動くかまで実施します。
 
 ## リリース
 
@@ -22,11 +22,11 @@ published: true
 
 本当は一人開発でここまでやる必要はないのですが、せっかくなので手順を記載しておきます。
 
-まずはGitHub上に移動すると、以下のようにPull Requestのボタンがあるので押します。
+まずはGitHub上に移動すると、次のようにPull Requestのボタンがあるので押します。
 
 ![ondul-style-img](/images/008/ondul-01.png)
 
-Pull Requestの概要を以下のように記載し、「Create Pull Request」を押します。
+Pull Requestの概要を次のように記載し、「Create Pull Request」を押します。
 
 ![ondul-style-img](/images/008/ondul-02.png)
 
@@ -50,7 +50,7 @@ Pull Requestの概要を以下のように記載し、「Create Pull Request」�
 
 ![ondul-style-img](/images/008/ondul-06.png)
 
-リリースが正常に終了すると、リポジトリのトップ画面が以下のようになるはずです。
+リリースが正常に終了すると、リポジトリのトップ画面が次のようになるはずです。
 
 ![ondul-style-img](/images/008/ondul-07.png)
 

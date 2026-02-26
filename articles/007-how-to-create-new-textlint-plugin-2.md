@@ -14,7 +14,7 @@ published: true
 
 ## 本記事概要
 
-実際にプラグインのコードを書き、コマンドラインでのtextlintを実行して、正常にオンドゥル変換できるかを確認していきます。
+実際にプラグインのコードを書き、コマンドラインでのtextlintを実行して、正常にオンドゥル変換できるかを確認します。
 
 ## プラグインの作成
 
@@ -32,7 +32,7 @@ https://github.com/shivase/textlint-rule-ondul-style/blob/v1.0.0/src/lib/ondulis
 
 ### 形態素解析の導入
 
-変換対象の文字列を単語に分解するためのモジュール、形態素解析のkuromojiを使います。日本語の読みをカナで出力してくれるため、それを上の `ondulish.ts` に渡していきます。
+変換対象の文字列を単語に分解するためのモジュール、形態素解析のkuromojiを使います。日本語の読みをカナで出力してくれるため、それを上の `ondulish.ts` に渡します。
 
 textlintではそのwrapper関数である `kuromojin` が用意されているので、そちらをインストール。
 
@@ -42,7 +42,7 @@ yarn add kuromojin
 
 ### メインロジック作成
 
-`index.ts` を今回は以下のようにかきました。
+`index.ts` を今回は次のようにかきました。
 
 ```typescript:index.ts
 import { TextlintRuleModule } from '@textlint/types';
@@ -86,7 +86,7 @@ export default reporter;
 ```
 
 :::message
-`Syntax.Str` の部分など、本当は変えたほうが良い部分はあるのですが、今回はなるべくシンプルにすべてをオンドゥル変換することとします。
+`Syntax.Str` の部分など、本当は変えたほうがよい部分はあるのですが、今回はなるべくシンプルにすべてをオンドゥル変換することとします。
 :::
 
 ### ダミーファイル作成
@@ -132,7 +132,7 @@ textlint-rule-ondul-style/ondulish_target.txt
 
 よいかんじですね！
 
-kuromojinでtokenizeすると、以下のような情報を持ったtokenが渡されます。適時自分の作りたいプラグインに合わせて使うと良いでしょう。
+kuromojinでtokenizeすると、次のような情報を持ったtokenが渡されます。適時自分の作りたいプラグインに合わせて使うとよいでしょう。
 
 https://github.com/azu/kuromojin
 
@@ -320,7 +320,7 @@ $ /textlint-rule-ondul-style/node_modules/.bin/lint-staged
 
 ## テスト
 
-では実際にテストコードを修正していきます。
+では実際にテストコードを修正します。
 と言っても、今回はすごく単純なのでひとつテストケースを作るだけにしました。
 
 ```typescript:index-text.ts
@@ -388,7 +388,7 @@ git commit -m "feat: test 追加"
 
 ### リリースに備えて
 
-次で最後のリリースになるのですが、このままだと今のコミットログは以下のような感じで、そのままマージするにはちょっと微妙です（commitやりなしたりしたので実際のログと手順にずれがあります）。そこでコミットを1つにまとめる処理をしておきます。
+次で最後のリリースになるのですが、このままだと今のコミットログは次のような感じで、そのままマージするにはちょっと微妙です（commitやりなしたりしたので実際のログと手順にずれがあります）。そこでコミットを1つにまとめる処理をしておきます。
 
 ```bash
 $ git log --oneline
@@ -467,7 +467,7 @@ To https://github.com/shivase/textlint-rule-ondul-style.git
 
 これでリリース準備ができました！
 
-次はテストを書いて、リリースまでしていきます。
+次はテストを書いて、リリースまでします。
 
 [リリース編へ](https://zenn.dev/shivase/articles/008-how-to-create-new-textlint-plugin-3)
 

@@ -20,7 +20,7 @@ https://github.com/shivase/textlint-rule-a3rt-proofreading-v2
 
 ## 先に残念なお話
 
-実際にプラグインを作って文章にかませてみたのですが、このAPIはあまり賢くなくて良いサジェスションをしてくれません😭。
+実際にプラグインを作って文章にかませてみたのですが、このAPIはあまり賢くなくてよいサジェスションをしてくれません😭。
 
 しかし外部APIを呼ぶプラグインでも、そんなに遅延を感じたりしないのでアリだなとは思いました。何か他におもしろいAPIないかなぁ。あったら教えてください！
 
@@ -30,13 +30,13 @@ https://github.com/shivase/textlint-rule-a3rt-proofreading-v2
 
 ### APIキーの取得
 
-まず実行するためには、Proofreading APIのAPIキーが必要ですので、以下のページで発行してください。フォーム入力後、すぐにメールにてAPIキーが送られてきます。
+まず実行するためには、Proofreading APIのAPIキーが必要ですので、次のページで発行してください。フォーム入力後、すぐにメールにてAPIキーが送られてきます。
 
 https://a3rt.recruit.co.jp/product/proofreadingAPI/registered/
 
 ### プラグインのインストール
 
-以下のコマンドでプラグインを入れてください。
+次のコマンドでプラグインを入れてください。
 
 ```bash
 npm install textlint-rule-a3rt-proofreading-v2
@@ -44,7 +44,7 @@ npm install textlint-rule-a3rt-proofreading-v2
 
 ### 設定ファイルの修正
 
-`.textlintrc.json` に以下のような感じで設定を追加してください。
+`.textlintrc.json` に次のような感じで設定を追加してください。
 
 ```json
 {
@@ -56,7 +56,7 @@ npm install textlint-rule-a3rt-proofreading-v2
 }
 ```
 
-上記設定の場合、プロジェクトの直下に `key.yaml` をおき、以下のフォーマットで取得したAPIキーを記入してください。
+上記設定の場合、プロジェクトの直下に `key.yaml` をおき、次のフォーマットで取得したAPIキーを記入してください。
 
 ```yaml
 version: 1
@@ -88,7 +88,7 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 
 ### 感想
 
-textlintのプラグインは思ったよりシンプルに作れるので良い感じです。
+textlintのプラグインは思ったよりシンプルに作れるのでよい感じです。
 ハマりどこが何個かありましたが、textlintのプラグイン開発HowToも別途記事にしていこうかなと考えています。
 
 せっかくなので興味がある人はインストールし試してくれるとうれしいです！

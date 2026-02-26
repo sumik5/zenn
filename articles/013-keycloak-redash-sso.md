@@ -15,7 +15,7 @@ BIツールとして今まで社内では別のツールを使っていました
 
 ## 最終形
 
-以下のように、redashのログイン画面にSAML Loginが追加され、任意のIdPによるログインが可能になる。
+次のように、redashのログイン画面にSAML Loginが追加され、任意のIdPによるログインが可能になる。
 
 ![login page](/images/013/redash_login_page.png)
 
@@ -39,7 +39,7 @@ BIツールとして今まで社内では別のツールを使っていました
 
 ![client type](/images/013/keycloak_add_client_02.png)
 
-クライアントの各設定は以下の通りです。
+クライアントの各設定は次のとおりです。
 
 ![client type](/images/013/keycloak_add_client_03.png)
 
@@ -59,7 +59,7 @@ BIツールとして今まで社内では別のツールを使っていました
 
 #### Mapperの追加
 
-クライアント・スコープのMapperを追加していきます。
+クライアント・スコープのMapperを追加します。
 
 ##### surnameとgivenNameを追加
 
@@ -114,7 +114,7 @@ redashの設定画面よりGeneralを選び、Authentication部分を記述し�
 ![redash](/images/013/keycloak_redash_03.png)
 
 * SAML Enabled : Enabled（Static）を選択  
-  ここをEnabled（Dynamic）にする記事が多いのですが、うまく処理されなかったためStaticにしています
+  ここをEnabled（Dynamic）にする記事が多いが、うまく処理されなかったためStaticにした
 * SAML Single Sign-on URL :「Target IDP initialted SSO URL」のURL部分
 * SAML Entity ID : 上で取得したentityId
 * SAML x509 : 上で取得したX509Certificate

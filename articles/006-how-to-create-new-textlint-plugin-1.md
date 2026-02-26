@@ -16,7 +16,7 @@ published: true
 
 ## 本記事概要
 
-プラグインを作成するにあたって必要な、以下の手順を記載していきます。
+プラグインを作成するにあたって必要な、次の手順を記載します。
 具体的なロジックだけ知りたい人は次の[プラグイン作成編](https://zenn.dev/shivase/articles/007-how-to-create-new-textlint-plugin-2)に進んでください。
 
 * create-textlint-ruleを使ったテンプレートの作成
@@ -40,7 +40,7 @@ published: true
 * Git
 * Visual Studio Code
 
-プラグインを公開するために以下のサイトを利用します。
+プラグインを公開するために次のサイトを利用します。
 
 * GitHub
 * NPM
@@ -55,7 +55,7 @@ published: true
 プラグイン名を `ondul-style` にするため、フォルダー名は `textlint-rule-ondul-style` として適当な場所に作成してください。
 
 :::message
-以下の作業はすべてVisual Studio Codeで、textlint-rule-ondul-styleフォルダーを開き、ターミナルで実行していきます。
+次の作業はすべてVisual Studio Codeで、textlint-rule-ondul-styleフォルダーを開き、ターミナルで実行します。
 :::
 
 ### texlint plugin generatorをインストール
@@ -67,7 +67,7 @@ npm install create-textlint-rule -g
 ### generatorを実行
 
 開発言語を `Typescript` 、パッケージ管理をnpmではなく `yarn` で作成します（お好みで）。
-以下のようにいろいろ聞いてきますので、環境に合わせ入れてください。
+次のようにいろいろ聞いてきますので、環境に合わせ入れてください。
 
 ```bash
 $ create-textlint-rule . --typescript --yarn
@@ -113,7 +113,7 @@ eslint定義ファイル作成。
 touch .eslintrc.yml
 ```
 
-内容はお任せですが、私のは以下のような感じです。使い回しなのでいろいろごみ混じっていますが。
+内容はお任せですが、私のは次のような感じです。使い回しなのでいろいろごみ混じっていますが。
 
 [textlint-rule-a3rt-proofreading-v2/.eslintrc.yml](https://github.com/shivase/textlint-rule-a3rt-proofreading-v2/blob/master/.eslintrc.yml)
 
@@ -138,7 +138,7 @@ touch .prettierrc
 touch .prettierignore
 ```
 
-`.prettierrc` は以下の通り。
+`.prettierrc` は次のとおり。
 
 ```json: .prettierrc
 {
@@ -152,7 +152,7 @@ touch .prettierignore
 }
 ```
 
-`.prettierignore` は以下の通り。
+`.prettierignore` は次のとおり。
 
 ```txt:.prettierignore
 node_modules
@@ -171,7 +171,7 @@ $ touch .husky/pre-commit
 $ chmod +x .husky/pre-commit
 ```
 
-pre-commitのファイル内容は以下の通り。
+pre-commitのファイル内容は次のとおり。
 
 ```bash:pre-commit
 #!/usr/bin/env sh
@@ -205,7 +205,7 @@ package.jsonを修正し、インストールしたLinterが動くようにし�
   }
 ```
 
-さっそく実行して試しましょう。`yarn lint` を実行すると、存在するTypeScriptファイルでエラーが出るので、以下のようになってくれたら成功です。
+さっそく実行して試しましょう。`yarn lint` を実行すると、存在するTypeScriptファイルでエラーが出るので、次のようになってくれたら成功です。
 
 ```bash
 $ yarn lint

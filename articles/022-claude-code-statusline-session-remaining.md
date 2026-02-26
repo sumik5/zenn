@@ -68,7 +68,7 @@ brew install ccusage
 :::message alert
 OAuth Usage APIを使うには、Claude Codeのログインセッションに `user:profile` スコープが必要です。以前にログインしたまま使っている場合、このスコープが含まれていない可能性があります。
 
-残量セグメントが表示されない場合は、以下の手順でログインし直してください。
+残量セグメントが表示されない場合は、次の手順でログインし直してください。
 
 ```bash
 claude auth logout

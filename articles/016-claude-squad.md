@@ -8,13 +8,13 @@ published: false
 
 ## 始めに
 
-私はtmux環境上でClaude Codeを多重起動し、それぞれのAgentに役割をもたせて連携させていましたが、段々と毎回起動するのが面倒だったので**Claude Squad**というツールを今回作成いたしました。
+私はtmux環境上でClaude Codeを多重起動し、それぞれのAgentに役割を割り当て連携させていましたが、段々と毎回起動するのが面倒になり**Claude Squad**というツールを今回作成いたしました。
 
 [Claude Squad](https://github.com/catenas-g/claude-squad)
 
 これは、tmux上で複数のClaude Code AIエージェントを並列実行し、チーム開発のようにプロジェクトを進めてくれるツールになります。
 
-といっても作って使い始めてもうかなり経ち、公開したのも先週ですので、もしかしたら今のClaude CodeにAgent機能が追加されたので、それをうまく使えばもっと良い方法できるかもしれません。
+ただし作成からかなり経っており、公開したのも先週です。現在のClaude CodeにはAgent機能が追加されたので、そちらを活用したほうがよいでしょう。
 
 :::message
 Claude Codeを私はこれを使って12多重くらいで動かしていますが（2つのClaude Squadを起動）、Claude Codeがダマで制限をかけて話題になっています。
@@ -27,7 +27,7 @@ MAXプランでないとトークン死しますし、そのMAXでも制限に�
 
 ## Claude Squadとは
 
-Claude Squadは、Product Owner、Manager、複数のDeveloperという役割分担をもつAIエージェントチームをtmux上で動かす統合開発環境システムです。
+Claude Squadは、Product Owner、Manager、複数のDeveloperという役割分担のAIエージェントチームをtmux上で動かす統合開発環境システムです。
 
 ### システム構成
 
@@ -52,7 +52,7 @@ Claude Squadの核心は、各エージェントが明確な役割分担を持�
 
 1. Product Owner: ユーザーからの要求を受け取り、プロジェクト方針を決定
 2. Manager: POからの指示をもとに、各開発エージェントに適切な作業を分担
-3. Developer: 割り当てられた専門領域の作業を実行
+3. Developer: 割り当てられた専門領域を担当
 4. 統合： Managerが各成果物を統合し、POに最終承認を求める
 
 #### エージェント設計の特徴
@@ -79,8 +79,8 @@ Claude Squadの核心は、各エージェントが明確な役割分担を持�
 
 ## 利用方法
 
-基本的には[README.md](https://github.com/catenas-g/claude-squad/blob/main/README.md)を見ていただければと思います。
-各役割をチューニングしたいとかあると思いますので、その場合はREADMEをご確認ください。
+基本的には[README.md](https://github.com/catenas-g/claude-squad/blob/main/README.md)を参照ください。
+各役割のチューニングが必要な場合はREADMEをご確認ください。
 
 ### 前提条件
 
@@ -89,7 +89,7 @@ Claude Squadの核心は、各エージェントが明確な役割分担を持�
 
 ### 環境構築
 
-中身はGo言語で作っているので、Windowsでも動くはずですが、動作確認まではしていません。おそらくMakefileを弄る必要があると思います。
+中身はGo言語で作っているので、Windowsでも動くはずですが、動作確認はしていません。Makefileの修正が必要です。
 
 ```bash
 # リポジトリのクローン
@@ -113,7 +113,7 @@ claude-squad --show-config
 
 Claude Squadは `dangerously-skip-permissions` をONにして動作するため、エージェントに適切な制約を設ける必要があります。
 
-`~/.claude/claude-squad/settings.json` で `allow` と `deny` の設定を行ってください。
+`~/.claude/claude-squad/settings.json` の `allow` と `deny` を設定してください。
 
 **これをしないと大暴れしますのでご注意ください。**
 
@@ -131,6 +131,6 @@ claude-squad myproject
 
 ## Link
 
-このしくみは、次のページを参考に、自分で楽に使いやすいように改善したものになります。
+このしくみは次のページを参考にして、自分で使いやすく改善したものです。
 
 [Claude Codeで複数のAIエージェントが協調作業！並列実行チーム構築ガイド](https://chatgpt-lab.com/n/na59171855b1e)

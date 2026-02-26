@@ -1,4 +1,3 @@
 imports:
-  - ./media/WEB+DB_PRESS.yml
   - ./media/techbooster.yml
   - ./media/icsmedia/prh.yml

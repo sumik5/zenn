@@ -16,9 +16,9 @@ textlintでの文章校正が当たり前になってしまうと、自動校正
 
 仕事ではNotionを使っているので、そちらのchrome拡張とどちらを作ろうか悩んで、Obsidianはpluginで気軽に作れそうだったのでtexlint開発の練習で作った次第です。
 
-まだ知ったばかりで全然初心者の域を出ていないため、機能として不十分なところが多々あると思いますがご了承ください。
+まだ知ったばかりで全然初心者の域を出ていないため、機能として不十分なところが多々ありますがご了承ください。
 
-使ってみて、こういう機能があるとよいなだったり、こうしてほしいなどありましたら、[issue](https://github.com/shivase/obsidian-textlint/issues)や[Discussion](https://github.com/shivase/obsidian-textlint/discussions)に気軽にコメントをください。
+利用した際に、追加してほしい機能や改善点などありましたら、[issue](https://github.com/shivase/obsidian-textlint/issues)や[Discussion](https://github.com/shivase/obsidian-textlint/discussions)に気軽にコメントをください。
 
 ## 機能の紹介
 

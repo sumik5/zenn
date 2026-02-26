@@ -10,9 +10,9 @@ React（＋Vite）のSPAを、GitHub Actionsの `actions/deploy-pages@v1` を使
 
 ## GitHub Actionsの設定
 
-昔は `peaceiris/actions-gh-pages` を使ってやっていたようですが、公式の `actions/deploy-pages@v1` で簡単にできるようになったようです（今回使うのが始めて）。
+昔は `peaceiris/actions-gh-pages` を利用していたようですが、公式の `actions/deploy-pages@v1` で簡単にできるようになったようです（今回使うのが始めて）。
 
-最終的なGitHub Actionの定義は以下の通り。
+最終的なGitHub Actionの定義は次のとおり。
 
 ```yaml
 name: deploy
